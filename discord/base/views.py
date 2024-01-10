@@ -9,8 +9,6 @@ collection_name = db['rooms']
 
 # Fetch data from MongoDB
 rooms = list(collection_name.find({}, {'_id': 0}))
-print(rooms)
-print(rooms)
 
 # Close the MongoDB connection
 client.close()
