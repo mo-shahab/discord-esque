@@ -1,11 +1,17 @@
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
-uri = "mongodb+srv://moshahab:mohammed@cluster0.zganuhb.mongodb.net/?retryWrites=true&w=majority"
-# Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client['chatrooms']
+collection_name = db['rooms']
+
+rooms_data = [
+    {'id': 1, 'name': 'something just like that'},
+    {'id': 2, 'name': 'a really good chatroom'},
+    {'id': 3, 'name': 'those arent good chatrooms, you know this'}
+]
+
+# Inserting data into MongoDB
+collection_name.insert_many(rooms_data)
+
+# Close the MongoDB connection
+client.close()
