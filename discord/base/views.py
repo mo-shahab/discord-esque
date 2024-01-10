@@ -1,15 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-rooms = [
-    {'id': 1, 'name': 'a good chatroom'},
-    {'id': 2, 'name': 'a really good chatroom'},
-    {'id': 3, 'name': 'those arent good chatrooms, you know this'}
-]
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client['chatrooms']
+collection_name = db['rooms']
+
+# Fetch data from MongoDB
+rooms = list(collection_name.find({}, {'_id': 0}))
+print(rooms)
+print(rooms)
+
+# Close the MongoDB connection
+client.close()
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html', {'rooms': rooms})
+    # rooms = list(collection_name.find())
+    context = {'rooms': rooms}
+    return render(request, 'base/home.html', context)
 
-def room(request):
-    return render(request, 'room.html')
+def room(request, pk):
+    room = None
+    for r in rooms:
+        if r['id'] == int(pk):
+            room = r
+    context = {'room': room}
+            
+    return render(request, 'base/room.html', context)
