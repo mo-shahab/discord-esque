@@ -14,4 +14,4 @@ rooms_data = [
 collection_name.insert_many(rooms_data)
 
 # Close the MongoDB connection
-client.close()
+client.close() 
