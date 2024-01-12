@@ -1,7 +1,6 @@
 Django framework used in making a discord-like web app.
 
-mongoDB for the baackend.
-was trying use pymongo to directly connect it with the db.
-but ORM felt cleaner
+django is connected to postgres backend
+the reference used sqlite db.
 
-djongo while i am at it
+should also work on migrating db to nosql-esque db like mongodb
