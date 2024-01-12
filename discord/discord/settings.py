@@ -77,16 +77,15 @@ WSGI_APPLICATION = "discord.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "djongo",
-        "NAME": "chatrooms",
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-                'host': "mongodb://localhost:27017/"
-            }  
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'chatrooms',
+        'USER': 'postgres',
+        'PASSWORD': 'mohammed',
+        'HOST': 'localhost',  # Set to your PostgreSQL server's address if not local
+        'PORT': '5432',       # Default PostgreSQL port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
