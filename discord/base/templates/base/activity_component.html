@@ -1,0 +1,14 @@
+<h3>Recent Activities</h3>
+<hr>
+{% for messages in room_messages %}
+<div>
+    <small>@{{messages.user}} {{messages.created | timesince}}</small>
+    <small>replied in "{{messages.room}}"</small>
+
+    <p>{{messages}}</p>
+    {% if request.user == messages.user %}
+        <a href="{% url 'delete-messages' messages.id%}">Delete</a>
+    {% endif %}
+    <hr>
+</div>
+{% endfor %}
