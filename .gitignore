@@ -162,3 +162,4 @@ cython_debug/
 .vscode
 discord/base/migrations/
 discord/database.py
+discord/theme/
